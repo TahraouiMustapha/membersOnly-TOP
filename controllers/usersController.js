@@ -1,4 +1,4 @@
-
+const db = require("../db/queries")
 
 const {body, validationResult} = require("express-validator");
 
@@ -12,30 +12,32 @@ const signUpValidator = [
         .trim()
         .notEmpty()
         .withMessage(`Full Name ${errsTxt.empty}`),
-    body("email")
+    body("username")
         .trim()
         .notEmpty()
         .withMessage(`Username ${errsTxt.empty}`)
         .isEmail()
         .withMessage(`Please enter a valid email address`),
     body("password")
-        .trim()
         .notEmpty()
         .withMessage(`Password ${errsTxt.empty}`)
         .isLength({min:8})
         .withMessage(`Password ${errsTxt.length}`), 
     body("confirmPassword")
-        .trim()
         .notEmpty()
         .withMessage(`Confirm Password ${errsTxt.empty}`)
         .isLength({min:8})
-        .withMessage(`Confirm Password ${errsTxt.length}`),               
+        .withMessage(`Confirm Password ${errsTxt.length}`)
+        .custom((value, { req })=> {
+            return value === req.body.password
+        })
+        .withMessage("Passwords did not match. Please try again")                      
 ]
 
 
 const registerUser = [
     signUpValidator,
-    (req, res, next) => {
+    async (req, res) => {
         const errors = validationResult(req);
 
         if(!errors.isEmpty()) {
@@ -45,15 +47,9 @@ const registerUser = [
             })
         }
 
-        const password = req.body.password;
-        const confirmPassword = req.body.confirmPassword
-        if(password !== confirmPassword) {
-            return res.status(400).render ("sign-up", {
-                errors: [
-                    { msg: "Passwords did not match. Please try again"}
-                ]
-            })
-        }
+        const {fullName, username,password} = req.body;
+        await db.insertUser({fullName, username, password, membershipstatus: false});
+
 
         res.send("good work no errors")
     }
