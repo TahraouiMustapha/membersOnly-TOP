@@ -8,7 +8,7 @@
             <form method="post">
                 <p>
                     <label for="firstName">Full Name</label>
-                    <input type="text" id="firstName" name="firstName" required>
+                    <input type="text" id="firstName" name="fullName" required>
                 </p>
 
                 <p>
@@ -18,13 +18,17 @@
 
                 <p>
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password">
+                    <input type="password" id="password" name="password" required>
                 </p>
 
                 <p>
                     <label for="confirmPassword">Confirm password</label>
-                    <input type="password" id="confirmPassword" name="confirm-password">
+                    <input type="password" id="confirmPassword" name="confirmPassword" required> 
                 </p>
+
+                <%if(locals.errors) {%> 
+                    <%-include("partials/errors")%>
+                <%}%>    
 
                 <button type="submit">Register</button>
             </form>
