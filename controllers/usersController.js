@@ -1,6 +1,7 @@
 const db = require("../db/queries")
 
 const {body, validationResult} = require("express-validator");
+const bcrypt = require("bcryptjs")
 
 const errsTxt = {
     empty: "can not be empty", 
@@ -47,8 +48,9 @@ const registerUser = [
             })
         }
 
-        const {fullName, username,password} = req.body;
-        await db.insertUser({fullName, username, password, membershipstatus: false});
+        const {fullName, username, password} = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await db.insertUser({fullName, username, password: hashedPassword, membershipstatus: false});
 
 
         res.send("good work no errors")
