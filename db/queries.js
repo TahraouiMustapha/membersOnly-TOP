@@ -8,8 +8,26 @@ async function insertUser ({fullName, username, password, membershipstatus}) {
     )
 } 
 
+async function getUserByUserName(username) {
+    const { rows } =  await pool.query (
+        "SELECT * FROM users where username = $1", 
+        [username]
+    )
 
+    return rows[0];
+}
+
+async function getUserById (id) {
+    const { rows } = await pool.query(
+        "SELECT * FROM users where userid = $1",
+        [id]
+    )
+
+    return rows[0];
+}
 
 module.exports = {
-    insertUser
+    insertUser, 
+    getUserByUserName,
+    getUserById
 }

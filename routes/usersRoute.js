@@ -1,11 +1,22 @@
 const { Router } = require("express")
 const usersRouter = Router() ;
-const usersController = require("../controllers/usersController")
+const usersController = require("../controllers/usersController");
+const passport = require("passport");
 
 
 usersRouter.get("/", (req, res)=> res.send("main page"))
 usersRouter.get("/sign-up", (req, res)=> res.render("sign-up"))
+usersRouter.get("/login", (req, res)=> res.render("login", {
+    title: "Members only"
+}))
 
 usersRouter.post("/sign-up", usersController.registerUser )
+usersRouter.post(
+    "/login", 
+    passport.authenticate("local", {
+        successRedirect: "/", 
+        failureRedirect: "/login"
+    })
+)
 
 module.exports = usersRouter;
