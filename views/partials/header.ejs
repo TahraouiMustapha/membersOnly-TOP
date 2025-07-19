@@ -1,0 +1,11 @@
+<div class="header">
+    <h2 class="logo">members only</h2>
+    <% if(locals.user) {%> 
+        <div><%=user.username%> of header</div>
+    <%} else {%>
+        <div>
+            <a href="/login"> Login </a>
+            <a href="/sign-up"> Register </a>
+        </div>     
+    <%}%>           
+</div>
