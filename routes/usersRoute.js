@@ -15,6 +15,11 @@ usersRouter.get("/login", (req, res)=> res.render("login", {
     title: "Members only"
 }))
 
+usersRouter.get("/new-message", (req, res)=> res.render("newMessage", {
+    title: "New Message",
+    user: req.user
+}))
+
 usersRouter.post("/sign-up", usersController.registerUser )
 usersRouter.post(
     "/login", 

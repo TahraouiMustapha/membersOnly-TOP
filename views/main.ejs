@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title><%= title %></title>
+    </head>
+
+    <body>
+        <%-include('partials/header')%>
+        <%if(locals.user) {%>
+            <p><%=user.username%></p>
+            <a href="/new-message">new message</a>
+        <%} else { %>
+            <h1>main page nothing else</h1>
+        <%}%>
+        
+    </body>
+</html>
