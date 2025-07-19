@@ -4,7 +4,12 @@ const usersController = require("../controllers/usersController");
 const passport = require("passport");
 
 
-usersRouter.get("/", (req, res)=> res.send("main page"))
+usersRouter.get("/", (req, res)=> {
+    res.render("main", { 
+        title: "Members Only",
+        user: req.user 
+    })
+})
 usersRouter.get("/sign-up", (req, res)=> res.render("sign-up"))
 usersRouter.get("/login", (req, res)=> res.render("login", {
     title: "Members only"
@@ -15,7 +20,7 @@ usersRouter.post(
     "/login", 
     passport.authenticate("local", {
         successRedirect: "/", 
-        failureRedirect: "/login"
+        failureRedirect: "/login"   
     })
 )
 
