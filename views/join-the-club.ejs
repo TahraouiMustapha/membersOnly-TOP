@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title><%= title %></title>
+    </head>
+    <body>
+        <%-include('partials/header')%>
+
+        <form method="post">
+            <p>
+                <label for="passcode">Enter The Passcode</label>
+                <input type="password" id="passcode" name="passcode" >
+            </p>
+
+            <%if(locals.errors) {%>
+                <%-include('partials/errors')%>
+            <%}%>
+            
+            <button type="submit">Enter</button>
+        </form>
+    </body>
+</html>

@@ -38,5 +38,6 @@ usersRouter.post(
 )
 
 usersRouter.post("/new-message", usersController.createMsg )
+usersRouter.post("/join-the-club", usersController.joinTheClub )
 
 module.exports = usersRouter;

@@ -57,6 +57,7 @@ const registerUser = [
     }
 ]
 
+// create message form validation
 const sendMsgValidate = [
     body("title")
         .trim()
@@ -88,8 +89,44 @@ const createMsg = [
     })
 ]
 
+// join the club form validation
+const passcode = 'membersOnly';
+
+const joinValidate = body("passcode")
+                        .trim()
+                        .notEmpty()
+                        .withMessage(`Passcode ${errsTxt.empty}`)
+                        .custom(value => {
+                            if(value !== passcode) {
+                                throw new Error("Incorrect Passcode!")
+                            }
+                            return true;
+                        })
+
+
+const joinTheClub = [
+    joinValidate, 
+    asyncHandler(async (req, res) =>{
+        const errors = validationResult(req);
+
+        if(!errors.isEmpty()) {
+            return res.status(400).render("join-the-club", {
+                title: "Join The Club",
+                user: req.user,
+                errors: errors.array()
+            })
+        }
+
+        const { userid } = req.user;
+        await db.updateMemberShipStatus( userid );
+
+        res.redirect('/')
+    })
+]
+
 module.exports = {
     registerUser, 
-    createMsg
+    createMsg, 
+    joinTheClub
 }
 

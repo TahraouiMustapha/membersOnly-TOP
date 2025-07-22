@@ -34,9 +34,19 @@ async function insertMessage({title, time, text, userid}) {
     )
 }
 
+async function updateMemberShipStatus(userid) {
+    await pool.query(
+        `UPDATE users
+        SET membershipstatus = true
+        where userid = $1`, 
+        [userid]
+    )
+}
+
 module.exports = {
     insertUser, 
     getUserByUserName,
     getUserById, 
-    insertMessage
+    insertMessage, 
+    updateMemberShipStatus
 }
