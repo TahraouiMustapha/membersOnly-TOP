@@ -8,6 +8,9 @@
         <%if(locals.user) {%>
             <p><%=user.username%></p>
             <a href="/new-message">new message</a>
+            <%if(!locals.user.membershipstatus){ %>
+                 <p>To see usernames, you need to <a href="/join-the-club">join our club </a> first.</p>
+            <%}%>
         <%} else { %>
             <h1>main page nothing else</h1>
         <%}%>
