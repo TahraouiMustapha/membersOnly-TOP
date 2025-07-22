@@ -1,4 +1,5 @@
 const db = require("../db/queries")
+const asyncHandler = require("express-async-handler")
 
 const {body, validationResult} = require("express-validator");
 const bcrypt = require("bcryptjs")
@@ -42,7 +43,6 @@ const registerUser = [
         const errors = validationResult(req);
 
         if(!errors.isEmpty()) {
-            console.log(errors.array())
             return res.status(400).render("sign-up", {
                 errors: errors.array()
             })
@@ -57,8 +57,39 @@ const registerUser = [
     }
 ]
 
+const sendMsgValidate = [
+    body("title")
+        .trim()
+        .notEmpty()
+        .withMessage(`Title ${errsTxt.empty}`), 
+    body("text")
+        .trim()
+        .notEmpty()
+        .withMessage(`Text ${errsTxt.empty}`)       
+]
+
+const createMsg = [
+    sendMsgValidate, 
+    asyncHandler(async (req, res)=> {
+        const errors = validationResult(req)
+        res.locals.user = req.user;
+        
+        if(!errors.isEmpty()) {
+            return res.status(400).render("newMessage", {
+                title: "New Message",
+                errors: errors.array()
+            })
+        }
+
+        const { title, text } = req.body;
+        await db.insertMessage({title, time: new Date(), text, userid: req.user.userid});
+
+        res.send("created succecfully")        
+    })
+]
 
 module.exports = {
-    registerUser
+    registerUser, 
+    createMsg
 }
 

@@ -29,4 +29,6 @@ usersRouter.post(
     })
 )
 
+usersRouter.post("/new-message", usersController.createMsg )
+
 module.exports = usersRouter;

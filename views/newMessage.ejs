@@ -4,7 +4,7 @@
     </head>
     <body>
         <%-include('partials/header')%>
-        <form action="">
+        <form action="" method="post">
             <p>
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title" required >
@@ -19,6 +19,10 @@
                     placeholder="Write your message here ..." >
                 </textarea>
             </p>
+
+            <%if(locals.errors) {%>
+                <%-include('partials/errors') %>
+            <%}%>                
 
             <button type="submit">Submit</button>
         </form>
