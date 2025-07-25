@@ -13,7 +13,16 @@
             <%}%>
         <%} else { %>
             <h1>main page nothing else</h1>
+        <%}%> 
+
+        <%if(locals.messages) {%> 
+            <%messages.forEach(msg=> {%>
+                <%-include('partials/msg', {
+                    author: msg.fullname, 
+                    time: msg.time, 
+                    text: msg.text 
+                })%>
+            <%})%>    
         <%}%>
-        
     </body>
 </html>

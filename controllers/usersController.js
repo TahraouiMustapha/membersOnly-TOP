@@ -2,7 +2,7 @@ const db = require("../db/queries")
 const asyncHandler = require("express-async-handler")
 
 const {body, validationResult} = require("express-validator");
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
 
 const errsTxt = {
     empty: "can not be empty", 
@@ -106,7 +106,7 @@ const joinValidate = body("passcode")
 
 const joinTheClub = [
     joinValidate, 
-    asyncHandler(async (req, res) =>{
+    asyncHandler(async (req, res) => {
         const errors = validationResult(req);
 
         if(!errors.isEmpty()) {
@@ -124,9 +124,21 @@ const joinTheClub = [
     })
 ]
 
+// display all msgs
+const mainPage = asyncHandler(async (req, res)=> {
+    const msgs = await db.getMessages();
+
+    
+    res.render("main", { 
+        title: "Members Only", 
+        messages : msgs
+    })
+})
+
 module.exports = {
     registerUser, 
     createMsg, 
-    joinTheClub
+    joinTheClub, 
+    mainPage
 }
 

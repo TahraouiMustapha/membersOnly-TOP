@@ -9,11 +9,7 @@ usersRouter.use((req, res, next) => {
     next()
 })
 
-usersRouter.get("/", (req, res)=> {
-    res.render("main", { 
-        title: "Members Only"
-    })
-})
+usersRouter.get("/", usersController.mainPage )
 usersRouter.get("/sign-up", (req, res)=> res.render("sign-up"))
 usersRouter.get("/login", (req, res)=> res.render("login", {
     title: "Members only"
@@ -23,7 +19,7 @@ usersRouter.get("/new-message", (req, res)=> res.render("newMessage", {
     title: "New Message"
 }))
 
-// join the club
+// join the club 
 usersRouter.get("/join-the-club", (req,res)=> res.render("join-the-club", {
     title: "Join The Club"
 }))

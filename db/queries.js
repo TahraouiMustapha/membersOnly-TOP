@@ -43,10 +43,20 @@ async function updateMemberShipStatus(userid) {
     )
 }
 
+async function getMessages() {
+    const { rows } = await pool.query (
+        `SELECT m.title, m.time, m.text , u.fullname from messages m 
+        JOIN users u ON m.userid = u.userid;`
+    )
+
+    return rows;
+}
+
 module.exports = {
     insertUser, 
     getUserByUserName,
     getUserById, 
     insertMessage, 
-    updateMemberShipStatus
+    updateMemberShipStatus, 
+    getMessages
 }
