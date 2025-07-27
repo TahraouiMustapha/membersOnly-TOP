@@ -85,7 +85,7 @@ const createMsg = [
         const { title, text } = req.body;
         await db.insertMessage({title, time: new Date(), text, userid: req.user.userid});
 
-        res.send("created succecfully")        
+        res.redirect('/')       
     })
 ]
 
