@@ -53,7 +53,7 @@ const registerUser = [
         await db.insertUser({fullName, username, password: hashedPassword, membershipstatus: false});
 
 
-        res.send("good work no errors")
+        res.redirect('/');
     }
 ]
 

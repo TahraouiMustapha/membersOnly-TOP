@@ -1,20 +1,19 @@
 <html>
     <head>
-        <title><%= title %></title>
+        <title><%= title || "Be An Admin"%></title>
     </head>
     <body>
         <%-include('partials/header')%>
-
         <form method="post">
             <p>
                 <label for="passcode">Enter The Passcode :</label>
-                <input type="password" id="passcode" name="passcode" >
+                <input type="password" id="passcode" name="passcode">
             </p>
 
             <%if(locals.errors) {%>
-                <%-include('partials/errors')%>
+                <%include('partials/errors')%>
             <%}%>
-            
+                          
             <button type="submit">Enter</button>
         </form>
     </body>

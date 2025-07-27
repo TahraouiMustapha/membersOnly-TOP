@@ -24,6 +24,11 @@ usersRouter.get("/join-the-club", (req,res)=> res.render("join-the-club", {
     title: "Join The Club"
 }))
 
+// to be an admin
+usersRouter.get("/be-an-admin", (req, res)=> res.render("be-an-admin", {
+    title: "Be An Admin"
+}))
+
 usersRouter.post("/sign-up", usersController.registerUser )
 usersRouter.post(
     "/login", 
