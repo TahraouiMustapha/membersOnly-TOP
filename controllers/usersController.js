@@ -159,6 +159,14 @@ const beAnAdmin = [
     })
 ]                        
 
+const deleteMsg = asyncHandler(async (req, res)=> {
+    const { messageid } = req.params;
+
+    await db.deleteMsg(messageid)
+
+    res.redirect('/')
+})
+
 // display all msgs
 const mainPage = asyncHandler(async (req, res)=> {
     const msgs = await db.getMessages();
@@ -175,6 +183,7 @@ module.exports = {
     createMsg, 
     joinTheClub, 
     beAnAdmin,
+    deleteMsg,
     mainPage
 }
 

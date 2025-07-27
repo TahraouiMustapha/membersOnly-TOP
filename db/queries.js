@@ -54,11 +54,19 @@ async function updateAdminStatus(userid) {
 
 async function getMessages() {
     const { rows } = await pool.query (
-        `SELECT m.title, m.time, m.text , u.fullname from messages m 
+        `SELECT m.*, u.fullname from messages m 
         JOIN users u ON m.userid = u.userid;`
     )
 
     return rows;
+}
+
+async function deleteMsg(messageid) {
+    await pool.query(
+        `DELETE from messages 
+        where messageid = $1`, 
+        [messageid]
+    );
 }
 
 module.exports = {
@@ -68,5 +76,6 @@ module.exports = {
     insertMessage, 
     updateMemberShipStatus, 
     updateAdminStatus,
-    getMessages
+    getMessages, 
+    deleteMsg
 }

@@ -32,6 +32,9 @@ usersRouter.get("/be-an-admin", (req, res)=> res.render("be-an-admin", {
 }))
 usersRouter.post("/be-an-admin", usersController.beAnAdmin )
 
+// delete a message
+usersRouter.get("/delete/:messageid", usersController.deleteMsg)
+
 usersRouter.post("/sign-up", usersController.registerUser )
 usersRouter.post(
     "/login", 

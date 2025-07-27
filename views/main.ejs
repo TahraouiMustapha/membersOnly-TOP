@@ -25,9 +25,7 @@
             <%messages.forEach(msg=> {%>
                 <%-include('partials/msg', {
                     memberShipStatus: locals.user ? user.membershipstatus : false,
-                    author: msg.fullname, 
-                    time: msg.time, 
-                    text: msg.text 
+                    message : msg
                 })%>
             <%})%>    
         <%}%>

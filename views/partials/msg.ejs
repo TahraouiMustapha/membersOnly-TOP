@@ -1,10 +1,12 @@
 <div>
     <%if(memberShipStatus) { %>
-        <p><%= author %></p>
-        <p><%= time %></p>
+        <p><%= message.author %></p>
+        <p><%= message.time %></p>
     <%} else {%>
         <p>@****</p>
         <p>****-**-**</p>
     <%}%>             
-    <p><%= text %></p>
+    <p><%= message.text %></p>
+
+    <a href="/delete/<%= message.messageid %>">delete</a>
 </div>
