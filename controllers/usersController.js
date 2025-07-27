@@ -90,14 +90,14 @@ const createMsg = [
 ]
 
 // join the club form validation
-const passcode = 'membersOnly';
+const clubPasscode = 'membersOnly';
 
 const joinValidate = body("passcode")
                         .trim()
                         .notEmpty()
                         .withMessage(`Passcode ${errsTxt.empty}`)
                         .custom(value => {
-                            if(value !== passcode) {
+                            if(value !== clubPasscode) {
                                 throw new Error("Incorrect Passcode!")
                             }
                             return true;
@@ -124,6 +124,41 @@ const joinTheClub = [
     })
 ]
 
+// be an admin form validation
+const adminPasscode = 'i am an admin';
+
+const adminValidate = body("passcode")
+                        .trim()
+                        .notEmpty()
+                        .withMessage(`Passcode ${errsTxt.empty}`)
+                        .custom (value => {
+                            if(value !== adminPasscode) {
+                                throw new Error("Incorrect Passcode!")
+                            }
+                        
+                            return true;
+                        })
+
+
+const beAnAdmin = [
+    adminValidate , 
+    asyncHandler(async (req, res)=> {
+        const errors = validationResult(req);
+
+        if(!errors.isEmpty()) {
+            return res.status(400).render("be-an-admin", {
+                title: "Be An Admin", 
+                errors : errors.array()
+            })
+        }
+
+        const { userid } = req.user; 
+        await db.updateAdminStatus( userid );
+
+        res.redirect('/')
+    })
+]                        
+
 // display all msgs
 const mainPage = asyncHandler(async (req, res)=> {
     const msgs = await db.getMessages();
@@ -139,6 +174,7 @@ module.exports = {
     registerUser, 
     createMsg, 
     joinTheClub, 
+    beAnAdmin,
     mainPage
 }
 

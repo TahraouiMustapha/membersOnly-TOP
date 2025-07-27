@@ -43,6 +43,15 @@ async function updateMemberShipStatus(userid) {
     )
 }
 
+async function updateAdminStatus(userid) {
+    await pool.query(
+        `UPDATE users
+        SET admin = true
+        WHERE userid = $1`, 
+        [userid]
+    );
+}
+
 async function getMessages() {
     const { rows } = await pool.query (
         `SELECT m.title, m.time, m.text , u.fullname from messages m 
@@ -58,5 +67,6 @@ module.exports = {
     getUserById, 
     insertMessage, 
     updateMemberShipStatus, 
+    updateAdminStatus,
     getMessages
 }

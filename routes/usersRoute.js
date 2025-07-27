@@ -23,11 +23,14 @@ usersRouter.get("/new-message", (req, res)=> res.render("newMessage", {
 usersRouter.get("/join-the-club", (req,res)=> res.render("join-the-club", {
     title: "Join The Club"
 }))
+usersRouter.post("/join-the-club", usersController.joinTheClub )
+
 
 // to be an admin
 usersRouter.get("/be-an-admin", (req, res)=> res.render("be-an-admin", {
     title: "Be An Admin"
 }))
+usersRouter.post("/be-an-admin", usersController.beAnAdmin )
 
 usersRouter.post("/sign-up", usersController.registerUser )
 usersRouter.post(
@@ -39,6 +42,6 @@ usersRouter.post(
 )
 
 usersRouter.post("/new-message", usersController.createMsg )
-usersRouter.post("/join-the-club", usersController.joinTheClub )
+
 
 module.exports = usersRouter;
