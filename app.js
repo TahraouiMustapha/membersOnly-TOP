@@ -17,6 +17,10 @@ const usersRouter = require("./routes/usersRoute");
 app.set("views", path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
+// serving a static files
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
+
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
 
