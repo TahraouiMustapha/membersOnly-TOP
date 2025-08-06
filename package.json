@@ -19,6 +19,7 @@
   "homepage": "https://github.com/TahraouiMustapha/membersOnly-TOP#readme",
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "date-fns": "^4.1.0",
     "dotenv": "^17.0.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
