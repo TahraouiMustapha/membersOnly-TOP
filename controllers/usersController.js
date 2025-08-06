@@ -4,6 +4,8 @@ const asyncHandler = require("express-async-handler")
 const {body, validationResult} = require("express-validator");
 const bcrypt = require("bcryptjs");
 
+const { format } = require('date-fns')
+
 const errsTxt = {
     empty: "can not be empty", 
     length: "must be at least 8 characteres long"
@@ -171,10 +173,15 @@ const deleteMsg = asyncHandler(async (req, res)=> {
 const mainPage = asyncHandler(async (req, res)=> {
     const msgs = await db.getMessages();
 
-    
+    const newMsgs = msgs.map(msg => {
+        const formatedTime = format(msg.time, "MM-dd-yyyy   h:m");
+        return {...msg, time: formatedTime}
+    })
+
+
     res.render("main", { 
         title: "Members Only", 
-        messages : msgs
+        messages : newMsgs
     })
 })
 

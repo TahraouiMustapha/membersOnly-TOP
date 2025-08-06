@@ -22,14 +22,17 @@
             <%} else { %>
                  <%-include('partials/note', {status: 'login'})%>
             <%}%>
+
             <%if(locals.messages) {%>
-                <%messages.forEach(msg=> {%>
-                    <%-include('partials/msg', {
-                        memberShipStatus: locals.user ? user.membershipstatus : false,
-                        isAdmin: locals.user ? user.admin : false,
-                        message : msg
-                    })%>
-                <%})%>
+                <div class="msgs-container">
+                    <%messages.forEach(msg=> {%>
+                        <%-include('partials/msg', {
+                            memberShipStatus: locals.user ? user.membershipstatus : false,
+                            isAdmin: locals.user ? user.admin : false,
+                            message : msg
+                        })%>
+                    <%})%>
+                </div>
             <%}%>
         </div>
     </body>
