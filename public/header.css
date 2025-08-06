@@ -29,17 +29,19 @@
     transition: 0.3s;
 }
 
-.loginBtn:hover {
+.loginBtn:hover{
     filter: brightness(90%) ;
 }
 
-.registerBtn {
+.registerBtn, 
+.username .links > * {
     background-color: white;
     color: var(--second-clr);
     transition: background-color 0.3s ease ;
 }
 
-.registerBtn:hover {
+.registerBtn:hover, 
+.username .links > *:hover {
     background-color: var(--second-clr);
     color: white;
 }
@@ -59,4 +61,11 @@
     left: 0;
     bottom: -5px;
 }
+
+.username {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 

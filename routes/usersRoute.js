@@ -46,5 +46,14 @@ usersRouter.post(
 
 usersRouter.post("/new-message", usersController.createMsg )
 
+usersRouter.get("/logout", (req, res, next) => {
+    req.logout( err=> {
+        if(err) {
+            return next(err);
+        }
+
+        res.redirect("/")
+    })
+})
 
 module.exports = usersRouter;
