@@ -8,30 +8,29 @@
 
     <body>
         <%-include('partials/header')%>
-        <%if(locals.user) {%>
-            <p><%=user.username%></p>
-            <a href="/new-message">new message</a>
-            <!-- for membershipstatus (join the club if you are not) -->
-            <%if(!locals.user.membershipstatus){ %>
-                 <p>To see usernames, you need to <a href="/join-the-club">join our club </a> first.</p>
-            <%} else {%>
-                <!-- for who wants to be an admin -->   
-                <%if(!locals.user.admin) {%> 
-                    <p>do you want to <a href="/be-an-admin">be an Admin</a> ?</p>  
+        <div class="container">
+            <%if(locals.user) {%>
+                <!-- for membershipstatus (join the club if you are not) -->
+                <%if(!locals.user.membershipstatus){ %>
+                    <%-include('partials/note', { status: 'join'})%>
+                <%} else {%>
+                    <!-- for who wants to be an admin -->
+                    <%if(!locals.user.admin) {%>
+                        <%-include('partials/note', {status: 'admin'})%>
+                    <%}%>
                 <%}%>
-            <%}%>                
-        <%} else { %>
-            <h1>main page nothing else</h1>
-        <%}%> 
-
-        <%if(locals.messages) {%> 
-            <%messages.forEach(msg=> {%>
-                <%-include('partials/msg', {
-                    memberShipStatus: locals.user ? user.membershipstatus : false,
-                    isAdmin: locals.user ? user.admin : false,
-                    message : msg
-                })%>
-            <%})%>    
-        <%}%>
+            <%} else { %>
+                 <%-include('partials/note', {status: 'login'})%>
+            <%}%>
+            <%if(locals.messages) {%>
+                <%messages.forEach(msg=> {%>
+                    <%-include('partials/msg', {
+                        memberShipStatus: locals.user ? user.membershipstatus : false,
+                        isAdmin: locals.user ? user.admin : false,
+                        message : msg
+                    })%>
+                <%})%>
+            <%}%>
+        </div>
     </body>
 </html>

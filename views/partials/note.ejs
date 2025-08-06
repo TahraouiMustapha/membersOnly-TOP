@@ -1,0 +1,14 @@
+<%
+  const noteStatus = {
+    login: `To create a post, you need to <a href="/login">login</a> first.`,
+    join: `To see usernames, you need to <a href="/join-the-club">join our club</a> first.`,
+    admin: `Do you want to <a href="/be-an-admin">be an Admin</a>?`
+  };
+%>  
+
+
+<div class="note">
+    <p>
+        <%- noteStatus[status] %>
+    </p>
+</div>
