@@ -1,0 +1,10 @@
+* {
+    --main-bg: #0E1217;
+    --second-clr: #7147ED;
+    font-family: system-ui, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

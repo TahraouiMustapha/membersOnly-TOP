@@ -1,0 +1,62 @@
+* {
+    color: white;
+}
+
+.header {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+.links {
+    margin-right: 12px;
+    display: flex;
+    gap: 20px;
+}
+
+.links > a {
+    padding: 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1.1ema ;
+}
+
+.loginBtn {
+    background-color: var(--second-clr);
+    color: white;
+    transition: 0.3s;
+}
+
+.loginBtn:hover {
+    filter: brightness(90%) ;
+}
+
+.registerBtn {
+    background-color: white;
+    color: var(--second-clr);
+    transition: background-color 0.3s ease ;
+}
+
+.registerBtn:hover {
+    background-color: var(--second-clr);
+    color: white;
+}
+
+.logo {
+    font-size: 2.6em;
+    font-weight: 700;
+    position: relative;
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background-color: var(--second-clr);
+    left: 0;
+    bottom: -5px;
+}
+
