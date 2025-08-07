@@ -1,37 +1,38 @@
 <html>
     <head>
+        <link rel="stylesheet" href="/global.css">
+        <link rel="stylesheet" href="/header.css">
+        <link rel="stylesheet" href="/forms.css">
         <title>Members Only</title>
     </head>
     <body>
-        <div>
-            <h2>Register a new account</h2>
-            <form method="post">
-                <p>
-                    <label for="firstName">Full Name</label>
-                    <input type="text" id="firstName" name="fullName" required>
-                </p>
-
-                <p>
-                    <label for="email">Username</label>
-                    <input type="email" id="email" name="username" required>
-                </p>
-
-                <p>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </p>
-
-                <p>
-                    <label for="confirmPassword">Confirm password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required> 
-                </p>
-
-                <%if(locals.errors) {%> 
-                    <%-include("partials/errors")%>
-                <%}%>    
-
-                <button type="submit">Register</button>
-            </form>
+        <%-include('partials/header')%>
+        <div class="container">
+            <div class="form-container">
+                <form method="post">
+                    <h2 class="form-title">Register a new account</h2>
+                    <p>
+                        <label for="firstName">Full Name</label>
+                        <input type="text" id="firstName" name="fullName" required>
+                    </p>
+                    <p>
+                        <label for="email">Username</label>
+                        <input type="email" id="email" name="username" required>
+                    </p>
+                    <p>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </p>
+                    <p>
+                        <label for="confirmPassword">Confirm password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </p>
+                    <%if(locals.errors) {%>
+                        <%-include("partials/errors")%>
+                    <%}%>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
         </div>
     </body>
 </html>

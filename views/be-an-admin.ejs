@@ -1,20 +1,26 @@
 <html>
     <head>
+        <link rel="stylesheet" href="/global.css">
+        <link rel="stylesheet" href="/header.css">
+        <link rel="stylesheet" href="/forms.css">
         <title><%= title || "Be An Admin"%></title>
     </head>
     <body>
         <%-include('partials/header')%>
-        <form method="post">
-            <p>
-                <label for="passcode">Enter The Passcode :</label>
-                <input type="password" id="passcode" name="passcode">
-            </p>
-
-            <%if(locals.errors) {%>
-                <%-include('partials/errors')%>
-            <%}%>
-
-            <button type="submit">Enter</button>
-        </form>
+        <div class="container">
+            <div class="form-container">
+                <form method="post">
+                    <h2 class="form-title">Be An Admin</h2>
+                    <p>
+                        <label for="passcode">Enter The Passcode :</label>
+                        <input type="password" id="passcode" name="passcode">
+                    </p>
+                    <%if(locals.errors) {%>
+                        <%-include('partials/errors')%>
+                    <%}%>
+                    <button type="submit">Enter</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
