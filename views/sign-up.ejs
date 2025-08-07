@@ -8,6 +8,9 @@
     <body>
         <%-include('partials/header')%>
         <div class="container">
+            <%if(locals.successCreateAcc) {%>
+                <%-include('partials/note', {status: 'successCreate'})%>
+            <%}%>    
             <div class="form-container">
                 <form method="post">
                     <h2 class="form-title">Register a new account</h2>

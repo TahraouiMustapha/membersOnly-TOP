@@ -41,6 +41,7 @@ body {
     margin-bottom: 24px;
 
     max-width: 732px;
+    padding: 0 8px;
 }
 
 .note a {

@@ -55,7 +55,9 @@ const registerUser = [
         await db.insertUser({fullName, username, password: hashedPassword, membershipstatus: false});
 
 
-        res.redirect('/');
+        res.render('sign-up', {
+            successCreateAcc: true
+        })
     }
 ]
 
