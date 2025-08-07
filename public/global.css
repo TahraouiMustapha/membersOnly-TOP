@@ -17,10 +17,14 @@ body {
     min-height: 100vh;
     width: 100%;
     padding: 0 10%;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
     padding: 2rem 24%;
+    flex-grow: 1;
 }
 
 /* for little note on top */
@@ -51,11 +55,12 @@ body {
 .msg {
     border: 1px solid white;
     border-radius: 8px;
+    max-width: 732px;
 
     padding: 1em;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 5px;
 }
 
 .fullname {
@@ -80,3 +85,21 @@ body {
     font-weight: 600;
 }
 
+
+.msg .txt {
+    overflow-wrap: break-word;
+}
+
+.msg .deleteBtn {
+    background-color: var(--second-clr);
+    padding: 8px 22px;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 500;
+    align-self: flex-start;
+    border-radius: 4px;
+}
+
+.msg .deleteBtn:hover {
+    filter: brightness(120%);
+}
