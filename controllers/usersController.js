@@ -50,7 +50,15 @@ const registerUser = [
             })
         }
 
+        
         const {fullName, username, password} = req.body;
+        const ourUser = await db.getUserByUserName(username);
+        if(ourUser) {
+            return res.render("sign-up", {
+                errors: [{ msg: "Username already exists. Try a different one."}]
+            })
+        }
+        
         const hashedPassword = await bcrypt.hash(password, 10);
         await db.insertUser({fullName, username, password: hashedPassword, membershipstatus: false});
 
