@@ -1,23 +1,27 @@
 <html>
     <head>
+        <link rel="stylesheet" href="/global.css">
+        <link rel="stylesheet" href="/header.css">
+        <link rel="stylesheet" href="/forms.css">
         <title><%= title %></title>
     </head>
     <body>
-        <div>
-            <form method="post">
-                <h2>Welcome back</h2>
-                <p>
-                    <label for="username">Username</label>
-                    <input type="email" id="username" name="username" required>
-                </p>
-
-                <p>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </p>
-
-                <button type="submit">Login</button>
-            </form>
+        <%-include('partials/header')%>
+        <div class="container">
+            <div class="form-container">
+                <form method="post">
+                    <h2 class="form-title">Welcome back</h2>
+                    <p>
+                        <label for="username">Username</label>
+                        <input type="email" id="username" name="username" required>
+                    </p>
+                    <p>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </p>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
         </div>
     </body>
 </html>

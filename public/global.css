@@ -1,6 +1,7 @@
 * {
     --main-bg: #0E1217;
     --second-clr: #7147ED;
+    --border-clr : rgb(58, 57, 57);
     font-family: system-ui, sans-serif;
     padding: 0;
     margin: 0;
@@ -60,7 +61,7 @@ body {
     padding: 1em;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
 }
 
 .fullname {
@@ -81,12 +82,13 @@ body {
 }
 
 .msg .title {
-    font-size: 1.4em;
+    font-size: 1.5em;
     font-weight: 600;
 }
 
 
 .msg .txt {
+    font-size: 1.1em;
     overflow-wrap: break-word;
 }
 
