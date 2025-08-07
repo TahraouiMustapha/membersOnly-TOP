@@ -1,30 +1,34 @@
 <html>
     <head>
+        <link rel="stylesheet" href="/global.css">
+        <link rel="stylesheet" href="/header.css">
+        <link rel="stylesheet" href="/forms.css">
         <title><%= title %></title>
     </head>
     <body>
         <%-include('partials/header')%>
-        <form action="" method="post">
-            <p>
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" required >
-            </p>
-
-            <p>
-                <label for="text">Message</label>
-                <textarea 
-                    id="text" 
-                    name="text"
-                    cols="33" 
-                    placeholder="Write your message here ..." >
-                </textarea>
-            </p>
-
-            <%if(locals.errors) {%>
-                <%-include('partials/errors') %>
-            <%}%>                
-
-            <button type="submit">Submit</button>
-        </form>
+        <div class="container">
+            <div class="form-container">
+                <form action="" method="post">
+                    <h2 class="form-title">New Post</h2>
+                    <p>
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" required >
+                    </p>
+                    <p>
+                        <label for="text">Message</label>
+                        <textarea
+                            id="text"
+                            name="text"
+                            cols="33"
+                            placeholder="Write your message here ..." ></textarea>
+                    </p>
+                    <%if(locals.errors) {%>
+                        <%-include('partials/errors') %>
+                    <%}%>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
